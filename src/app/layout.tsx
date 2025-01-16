@@ -1,14 +1,12 @@
+import NavBar from "./components/NavBar";
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Manrope } from "next/font/google";
 import "./globals.css";
+import Footer from "./components/Footer";
+import StoreProvider from "./components/StoreProvider";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const manrope = Manrope({
+  weight: ["400", "500", "600", "700"],
   subsets: ["latin"],
 });
 
@@ -24,10 +22,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
+      <body className={`bg-[#141414] ${manrope.className}`}>
+        <StoreProvider>
+          <NavBar />
+          {children}
+          <Footer />
+        </StoreProvider>
       </body>
     </html>
   );

@@ -1,0 +1,1 @@
+export const navBarPages = [{page: "Home", path: "/"}, {page: "Movies & Shows", path: "/movies"}, {page: "Support", path: "/support"}, {page: "Subscriptions", path: "/subscription"}];
