@@ -4,16 +4,10 @@ import PlayIcon from "../../../assets/play.svg";
 import BigLogo from "../../../assets/bigLogo.svg";
 import Button from "../Button";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
-// import { useAppSelector } from "@/hooks/reduxHooks";
-import { useTrendingMoviesQuery } from "@/app/store/api/features/movieApi";
 import { useEffect } from "react";
 
 const Main = () => {
   const isMediaLessThan1024 = useMediaQuery(1024);
-  // const movies = useAppSelector((state) => state.movie.value);
-  const { data, error, isLoading } = useTrendingMoviesQuery(null);
-
-  console.log(data);
 
   useEffect(() => {
     fetch("/api/email?q=cat", {

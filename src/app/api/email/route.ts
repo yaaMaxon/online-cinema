@@ -4,7 +4,6 @@ import nodemailer from 'nodemailer'
 export async function POST(req: NextRequest) {
     const password = process.env.NEXT_PUBLIC_NODEMAILER_PASS
     const myEmail = process.env.NEXT_PUBLIC_NODEMAILER_EMAIL
-console.log('fsjkdflksdjf');
 
     const transporter = nodemailer.createTransport({
         service: "gmail",

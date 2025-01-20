@@ -1,32 +1,26 @@
 "use client";
 
-import categoriesAdventure from "@/assets/categoriesAdventure.webp";
-import Image from "next/image";
 import ArrowRightIcon from "@/assets/arrowRight.svg";
 import ArrowLeftIcon from "@/assets/arrowLeft.svg";
+import Image from "next/image";
+import popularDrama from "@/assets/popularDrama.webp";
 import { useState } from "react";
-import { useGenreMoviesQuery } from "@/app/store/api/features/movieApi";
+import { useGenreShowsQuery } from "@/app/store/api/features/showApi";
 
 interface Genres {
   name: string;
   id: number;
 }
 
-type Props = {
-  title: string;
-  label?: string;
-  titleStyles?: string;
-};
-
-const GenresList = ({ title, label, titleStyles }: Props) => {
-  const { data: genreMovies } = useGenreMoviesQuery(null);
+const PopularShowGenres = () => {
+  const { data: popularGenres } = useGenreShowsQuery(null);
 
   const [currentPage, setCurrentPage] = useState(0);
-  const itemsPerPage = 5;
-  const totalPages = Math.ceil(genreMovies?.genres.length / itemsPerPage);
+  const itemsPerPage = 4;
+  const totalPages = Math.ceil(popularGenres?.genres.length / itemsPerPage);
 
   const handleNext = () => {
-    if ((currentPage + 1) * itemsPerPage < genreMovies?.genres.length) {
+    if ((currentPage + 1) * itemsPerPage < popularGenres?.genres.length) {
       setCurrentPage(currentPage + 1);
     }
   };
@@ -39,27 +33,16 @@ const GenresList = ({ title, label, titleStyles }: Props) => {
 
   const progressPercentage = ((currentPage + 1) / totalPages) * 100;
 
-  const displayedGenres = genreMovies?.genres.slice(
+  const displayedGenres = popularGenres?.genres.slice(
     currentPage * itemsPerPage,
     (currentPage + 1) * itemsPerPage
   );
   return (
     <>
-      <div className="flex lg:justify-between lg:items-center mb-10 lg:mb-[60px] ">
-        {(title || label) && (
-          <div>
-            {title && (
-              <h2 className={`text-white text-2xl font-bold ${titleStyles}`}>
-                {title}
-              </h2>
-            )}
-            {label && (
-              <p className="text-default mt-2.5 text-sm lg:text-base">
-                {label}
-              </p>
-            )}
-          </div>
-        )}
+      <div className="flex justify-center lg:justify-between items-center mb-5 lg:mb-10">
+        <h2 className="text-white text-2xl font-bold lg:text-3xl">
+          Popular Top 10 In Genres
+        </h2>
         <div className="bg-[#0F0F0F] border-[1px] border-[#1F1F1F] rounded-[10px] p-4 hidden lg:flex items-center gap-3">
           <button
             type="button"
@@ -78,7 +61,7 @@ const GenresList = ({ title, label, titleStyles }: Props) => {
             type="button"
             onClick={handleNext}
             disabled={
-              (currentPage + 1) * itemsPerPage >= genreMovies?.genres.length
+              (currentPage + 1) * itemsPerPage >= popularGenres?.genres.length
             }
           >
             <ArrowRightIcon className="bg-[#1A1A1A] border-[1px] border-[#1F1F1F] rounded-md" />
@@ -89,15 +72,10 @@ const GenresList = ({ title, label, titleStyles }: Props) => {
         {displayedGenres?.map(({ name, id }: Genres) => (
           <li
             key={id}
-            className="cursor-pointer border border-[#262626] bg-[#1A1A1A] border-[1px solid #262626] rounded-[10px] p-6"
+            className="cursor-pointer border border-[#262626] bg-[#1A1A1A] border-[1px solid #262626] rounded-[10px] p-[30px]"
           >
             <div className="relative mb-[2px]">
-              <Image
-                src={categoriesAdventure}
-                alt="categorie"
-                width={190}
-                height={230}
-              />
+              <Image src={popularDrama} alt="categorie" />
               <div
                 className="absolute inset-0 rounded-[10px]"
                 style={{
@@ -107,9 +85,14 @@ const GenresList = ({ title, label, titleStyles }: Props) => {
               ></div>
             </div>
             <div className="flex justify-between items-center">
-              <span className="text-white text-sm lg:text-lg font-semibold">
-                {name}
-              </span>
+              <div className="flex flex-col gap-[2px]">
+                <span className="bg-[#E50000] text-white text-xs font-semibold rounded-[4px] w-[86px] p-2">
+                  Top 10 In
+                </span>
+                <span className="text-white text-sm lg:text-lg font-semibold">
+                  {name}
+                </span>
+              </div>
               <ArrowRightIcon />
             </div>
           </li>
@@ -119,4 +102,4 @@ const GenresList = ({ title, label, titleStyles }: Props) => {
   );
 };
 
-export default GenresList;
+export default PopularShowGenres;

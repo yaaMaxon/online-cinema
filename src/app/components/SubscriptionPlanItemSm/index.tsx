@@ -15,7 +15,6 @@ const SubscriptionPlanItemSm = ({
 
   const colSpanClass = index === 2 || index === 3 ? "col-span-2" : "col-span-1";
 
-  console.log(activePlan);
   return (
     <li className={`flex flex-col gap-1 ${colSpanClass}`}>
       <span className="text-sm font-medium text-default">{features}</span>

@@ -7,24 +7,24 @@ import StarIcon from "@/assets/star.svg";
 import Image from "next/image";
 import { BASE_URL } from "@/app/constants/path";
 import { useState } from "react";
-import { useMustWatchesQuery } from "@/app/store/api/features/movieApi";
+import { useMustWatchesShowsQuery } from "@/app/store/api/features/showApi";
 
-interface MustWatchesMovies {
+interface MustWatchesShow {
   id: number;
   popularity: number;
   vote_average: number;
   poster_path: string;
 }
 
-const MustWatchesMovies = () => {
-  const { data: mustWatches } = useMustWatchesQuery(null);
+const MustWatchesShows = () => {
+  const { data: mustWatchesShow } = useMustWatchesShowsQuery(null);
 
   const [currentPage, setCurrentPage] = useState(0);
   const itemsPerPage = 4;
-  const totalPages = Math.ceil(mustWatches?.results.length / itemsPerPage);
+  const totalPages = Math.ceil(mustWatchesShow?.results.length / itemsPerPage);
 
   const handleNext = () => {
-    if ((currentPage + 1) * itemsPerPage < mustWatches?.results.length) {
+    if ((currentPage + 1) * itemsPerPage < mustWatchesShow?.results.length) {
       setCurrentPage(currentPage + 1);
     }
   };
@@ -37,16 +37,15 @@ const MustWatchesMovies = () => {
 
   const progressPercentage = ((currentPage + 1) / totalPages) * 100;
 
-  const displayedMustWatches = mustWatches?.results.slice(
+  const displayedMustWatchesShow = mustWatchesShow?.results.slice(
     currentPage * itemsPerPage,
     (currentPage + 1) * itemsPerPage
   );
-
   return (
     <>
       <div className="flex justify-center lg:justify-between items-center mb-5 lg:mb-10">
         <h2 className="text-white text-2xl font-bold lg:text-3xl">
-          Must - Watch Movies
+          Must - Watch Shows
         </h2>
         <div className="bg-[#0F0F0F] border-[1px] border-[#1F1F1F] rounded-[10px] p-4 hidden lg:flex items-center gap-3">
           <button
@@ -66,7 +65,8 @@ const MustWatchesMovies = () => {
             type="button"
             onClick={handleNext}
             disabled={
-              (currentPage + 1) * itemsPerPage >= mustWatches?.results.length
+              (currentPage + 1) * itemsPerPage >=
+              mustWatchesShow?.results.length
             }
           >
             <ArrowRightIcon className="bg-[#1A1A1A] border-[1px] border-[#1F1F1F] rounded-md" />
@@ -74,13 +74,8 @@ const MustWatchesMovies = () => {
         </div>
       </div>
       <ul className="flex justify-center lg:justify-between flex-wrap">
-        {displayedMustWatches?.map(
-          ({
-            id,
-            popularity,
-            vote_average,
-            poster_path,
-          }: MustWatchesMovies) => (
+        {displayedMustWatchesShow?.map(
+          ({ id, popularity, vote_average, poster_path }: MustWatchesShow) => (
             <li
               key={id}
               className="cursor-pointer border border-[#262626] bg-[#1A1A1A] border-[1px solid #262626] rounded-[10px] p-4"
@@ -129,4 +124,4 @@ const MustWatchesMovies = () => {
   );
 };
 
-export default MustWatchesMovies;
+export default MustWatchesShows;

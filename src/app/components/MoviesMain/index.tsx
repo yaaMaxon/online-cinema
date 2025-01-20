@@ -1,8 +1,8 @@
-import PlusIcon from "../../../assets/plus.svg";
-import LikeIcon from "../../../assets/like.svg";
-import VolumeIcon from "../../../assets/volume.svg";
-import PlayIcon from "../../../assets/play.svg";
-import backgroundMoviesPage from "../../../assets/backgroundMoviesPage.webp";
+import PlusIcon from "@/assets/plus.svg";
+import LikeIcon from "@/assets/like.svg";
+import VolumeIcon from "@/assets/volume.svg";
+import PlayIcon from "@/assets/play.svg";
+import backgroundMoviesPage2x from "@/assets/backgroundMoviesPage2x.webp";
 import Button from "../Button";
 import Image from "next/image";
 
@@ -11,7 +11,7 @@ const MoviesMain = () => {
     <div className="relative flex flex-col items-center border border-[#262626] rounded-xl text-white px-6 pt-6 pb-4 lg:px-10 lg:pt-10">
       <div className="inset-0 w-full h-[358px] lg:h-[709px]">
         <Image
-          src={backgroundMoviesPage}
+          src={backgroundMoviesPage2x}
           alt="Background Page"
           layout="fill"
           objectFit="cover"
