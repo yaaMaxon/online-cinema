@@ -2,8 +2,9 @@
 
 import ArrowRightIcon from "@/assets/arrowRight.svg";
 import ArrowLeftIcon from "@/assets/arrowLeft.svg";
+import Link from "next/link";
 import Image from "next/image";
-import popularAdventure from "@/assets/popularAdventure.webp";
+import popularACtion from "@/assets/popularAction.webp";
 import { useState } from "react";
 import { useGenreMoviesQuery } from "@/app/store/api/features/movieApi";
 
@@ -50,7 +51,9 @@ const PopularGenres = () => {
             onClick={handlePrev}
             disabled={currentPage === 0}
           >
-            <ArrowLeftIcon className="bg-[#1A1A1A] border-[1px] border-[#1F1F1F] rounded-md" />
+            <div className="bg-[#1A1A1A] border-[1px] border-[#1F1F1F] rounded-md p-2.5">
+              <ArrowLeftIcon />
+            </div>
           </button>
           <div className="w-5 h-1 bg-[#333] rounded-[100px] overflow-hidden">
             <div
@@ -65,7 +68,9 @@ const PopularGenres = () => {
               (currentPage + 1) * itemsPerPage >= genreMovies?.genres.length
             }
           >
-            <ArrowRightIcon className="bg-[#1A1A1A] border-[1px] border-[#1F1F1F] rounded-md" />
+            <div className="bg-[#1A1A1A] border-[1px] border-[#1F1F1F] rounded-md p-2.5">
+              <ArrowRightIcon />
+            </div>
           </button>
         </div>
       </div>
@@ -75,31 +80,33 @@ const PopularGenres = () => {
             key={id}
             className="cursor-pointer border border-[#262626] bg-[#1A1A1A] rounded-[10px] p-[30px]"
           >
-            <div className="relative mb-[2px]">
-              <Image
-                src={popularAdventure}
-                alt="genre"
-                className="rounded-[10px]"
-              />
-              <div
-                className="absolute inset-0 rounded-[10px]"
-                style={{
-                  background:
-                    "linear-gradient(180deg, rgba(26, 26, 26, 0.00) 0%, #1A1A1A 101.79%)",
-                }}
-              ></div>
-            </div>
-            <div className="flex justify-between items-center">
-              <div className="flex flex-col gap-[2px]">
-                <span className="bg-[#E50000] text-white text-xs lg:text-base font-semibold rounded-[4px] w-[86px] p-2">
-                  Top 10 In
-                </span>
-                <span className="text-white text-base lg:text-xl font-semibold">
-                  {name}
-                </span>
+            <Link href={`/movies/top-genres/${id}`}>
+              <div className="relative mb-[2px]">
+                <Image
+                  src={popularACtion}
+                  alt="genre"
+                  className="rounded-[10px]"
+                />
+                <div
+                  className="absolute inset-0 rounded-[10px]"
+                  style={{
+                    background:
+                      "linear-gradient(180deg, rgba(26, 26, 26, 0.00) 0%, #1A1A1A 101.79%)",
+                  }}
+                ></div>
               </div>
-              <ArrowRightIcon />
-            </div>
+              <div className="flex justify-between items-center">
+                <div className="flex flex-col gap-[2px]">
+                  <span className="bg-[#E50000] text-white text-xs lg:text-base font-semibold rounded-[4px] w-[86px] p-2">
+                    Top 10 In
+                  </span>
+                  <span className="text-white text-base lg:text-xl font-semibold">
+                    {name}
+                  </span>
+                </div>
+                <ArrowRightIcon />
+              </div>
+            </Link>
           </li>
         ))}
       </ul>

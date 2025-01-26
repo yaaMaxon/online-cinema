@@ -46,7 +46,7 @@ const Subscription = () => {
             key={index}
             plan={plan}
             description={description}
-            price={price}
+            price={activePlan === "Yearly" ? price * 12 : price}
           />
         ))}
       </ul>

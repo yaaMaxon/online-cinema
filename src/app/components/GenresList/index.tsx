@@ -1,6 +1,7 @@
 "use client";
 
 import categoriesAdventure from "@/assets/categoriesAdventure.webp";
+import Link from "next/link";
 import Image from "next/image";
 import ArrowRightIcon from "@/assets/arrowRight.svg";
 import ArrowLeftIcon from "@/assets/arrowLeft.svg";
@@ -20,6 +21,7 @@ type Props = {
 
 const GenresList = ({ title, label, titleStyles }: Props) => {
   const { data: genreMovies } = useGenreMoviesQuery(null);
+  console.log(genreMovies);
 
   const [currentPage, setCurrentPage] = useState(0);
   const itemsPerPage = 5;
@@ -45,7 +47,10 @@ const GenresList = ({ title, label, titleStyles }: Props) => {
   );
   return (
     <>
-      <div className="flex lg:justify-between lg:items-center mb-10 lg:mb-[60px] ">
+      <div
+        id="genres"
+        className="flex lg:justify-between lg:items-center mb-10 lg:mb-[60px] scroll-mt-32"
+      >
         {(title || label) && (
           <div>
             {title && (
@@ -66,7 +71,9 @@ const GenresList = ({ title, label, titleStyles }: Props) => {
             onClick={handlePrev}
             disabled={currentPage === 0}
           >
-            <ArrowLeftIcon className="bg-[#1A1A1A] border-[1px] border-[#1F1F1F] rounded-md" />
+            <div className="bg-[#1A1A1A] border-[1px] border-[#1F1F1F] rounded-md p-2.5">
+              <ArrowLeftIcon />
+            </div>
           </button>
           <div className="w-5 h-1 bg-[#333] rounded-[100px] overflow-hidden">
             <div
@@ -81,7 +88,9 @@ const GenresList = ({ title, label, titleStyles }: Props) => {
               (currentPage + 1) * itemsPerPage >= genreMovies?.genres.length
             }
           >
-            <ArrowRightIcon className="bg-[#1A1A1A] border-[1px] border-[#1F1F1F] rounded-md" />
+            <div className="bg-[#1A1A1A] border-[1px] border-[#1F1F1F] rounded-md p-2.5">
+              <ArrowRightIcon />
+            </div>
           </button>
         </div>
       </div>
@@ -91,27 +100,29 @@ const GenresList = ({ title, label, titleStyles }: Props) => {
             key={id}
             className="cursor-pointer border border-[#262626] bg-[#1A1A1A] border-[1px solid #262626] rounded-[10px] p-6"
           >
-            <div className="relative mb-[2px]">
-              <Image
-                src={categoriesAdventure}
-                alt="categorie"
-                width={190}
-                height={230}
-              />
-              <div
-                className="absolute inset-0 rounded-[10px]"
-                style={{
-                  background:
-                    "linear-gradient(180deg, rgba(26, 26, 26, 0.00) 0%, #1A1A1A 101.79%)",
-                }}
-              ></div>
-            </div>
-            <div className="flex justify-between items-center">
-              <span className="text-white text-sm lg:text-lg font-semibold">
-                {name}
-              </span>
-              <ArrowRightIcon />
-            </div>
+            <Link href={`/movies/genres/${id}`}>
+              <div className="relative mb-[2px]">
+                <Image
+                  src={categoriesAdventure}
+                  alt="categorie"
+                  width={190}
+                  height={230}
+                />
+                <div
+                  className="absolute inset-0 rounded-[10px]"
+                  style={{
+                    background:
+                      "linear-gradient(180deg, rgba(26, 26, 26, 0.00) 0%, #1A1A1A 101.79%)",
+                  }}
+                ></div>
+              </div>
+              <div className="flex justify-between items-center">
+                <span className="text-white text-sm lg:text-lg font-semibold">
+                  {name}
+                </span>
+                <ArrowRightIcon />
+              </div>
+            </Link>
           </li>
         ))}
       </ul>

@@ -13,8 +13,29 @@ export const showApi = RTKAPI.injectEndpoints({
     }),
     mustWatchesShows: builder.query({
       query: () => `/tv/top_rated?language=en-US&page=1`
-    })
+    }),
+    getShowDetails: builder.query({
+      query: (showId) => `/tv/${showId}`
+    }),
+    getShowCast: builder.query({
+      query: (movieId) => `/tv/${movieId}/credits?language=en-US`
+    }),
+    getShowReviews: builder.query({
+      query: (movieId) => `/tv/${movieId}/reviews?language=en-US&page=1`
+    }),
+    getShowsByGenresId: builder.query({
+      query: ({ genresId, page }) =>
+       `/discover/tv?with_genres=${genresId}&page=${page}&sort_by=popularity.desc`,
+    }),
   }),
 })
 
-export const { useGenreShowsQuery, useTrendingShowsQuery, useAiringTodayShowsQuery, useMustWatchesShowsQuery } = showApi
+export const { 
+  useGenreShowsQuery, 
+  useTrendingShowsQuery, 
+  useAiringTodayShowsQuery, 
+  useMustWatchesShowsQuery,
+  useGetShowDetailsQuery,
+  useGetShowCastQuery,
+  useGetShowReviewsQuery,
+  useGetShowsByGenresIdQuery } = showApi

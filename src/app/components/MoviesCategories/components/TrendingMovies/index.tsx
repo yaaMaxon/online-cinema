@@ -3,6 +3,8 @@
 import ArrowRightIcon from "@/assets/arrowRight.svg";
 import ArrowLeftIcon from "@/assets/arrowLeft.svg";
 import ViewsIcon from "@/assets/views.svg";
+import Link from "next/link";
+import NoImg from "@/assets/no_img.png";
 import Image from "next/image";
 import { BASE_URL } from "@/app/constants/path";
 import { useState } from "react";
@@ -53,7 +55,9 @@ const TrendingMovies = () => {
             onClick={handlePrev}
             disabled={currentPage === 0}
           >
-            <ArrowLeftIcon className="bg-[#1A1A1A] border-[1px] border-[#1F1F1F] rounded-md" />
+            <div className="bg-[#1A1A1A] border-[1px] border-[#1F1F1F] rounded-md p-2.5">
+              <ArrowLeftIcon />
+            </div>
           </button>
           <div className="w-5 h-1 bg-[#333] rounded-[100px] overflow-hidden">
             <div
@@ -68,7 +72,9 @@ const TrendingMovies = () => {
               (currentPage + 1) * itemsPerPage >= trending?.results.length
             }
           >
-            <ArrowRightIcon className="bg-[#1A1A1A] border-[1px] border-[#1F1F1F] rounded-md" />
+            <div className="bg-[#1A1A1A] border-[1px] border-[#1F1F1F] rounded-md p-2.5">
+              <ArrowRightIcon />
+            </div>
           </button>
         </div>
       </div>
@@ -79,28 +85,30 @@ const TrendingMovies = () => {
               key={id}
               className="cursor-pointer border border-[#262626] bg-[#1A1A1A] border-[1px solid #262626] rounded-[10px] p-4"
             >
-              <div className="flex flex-col items-center gap-4">
-                <Image
-                  src={BASE_URL + poster_path}
-                  alt="movie"
-                  width={190}
-                  height={230}
-                  className="rounded-[10px]"
-                />
-                <div className="flex">
-                  <div className="flex items-center gap-[3px] py-2 px-[14px] bg-[#141414] border-[1px] border-[#262626] rounded-[51px] mr-1">
-                    <span className="text-default text-xs font-medium">
-                      Rating: {vote_average.toFixed(1)}
-                    </span>
-                  </div>
-                  <div className="flex items-center py-1 pl-1 pr-2 gap-[2px] bg-[#141414] border-[1px] border-[#262626] rounded-[51px]">
-                    <ViewsIcon />
-                    <span className="text-default text-xs font-medium">
-                      {popularity}
-                    </span>
+              <Link href={`/movies/${id}`}>
+                <div className="flex flex-col items-center gap-4">
+                  <Image
+                    src={poster_path !== null ? BASE_URL + poster_path : NoImg}
+                    alt="movie"
+                    width={190}
+                    height={230}
+                    className="rounded-[10px]"
+                  />
+                  <div className="flex">
+                    <div className="flex items-center gap-[3px] py-2 px-[14px] bg-[#141414] border-[1px] border-[#262626] rounded-[51px] mr-1">
+                      <span className="text-default text-xs font-medium">
+                        Rating: {vote_average.toFixed(1)}
+                      </span>
+                    </div>
+                    <div className="flex items-center py-1 pl-1 pr-2 gap-[2px] bg-[#141414] border-[1px] border-[#262626] rounded-[51px]">
+                      <ViewsIcon />
+                      <span className="text-default text-xs font-medium">
+                        {popularity}
+                      </span>
+                    </div>
                   </div>
                 </div>
-              </div>
+              </Link>
             </li>
           )
         )}

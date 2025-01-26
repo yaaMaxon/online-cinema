@@ -2,7 +2,9 @@
 
 import ArrowRightIcon from "@/assets/arrowRight.svg";
 import ArrowLeftIcon from "@/assets/arrowLeft.svg";
+import NoImg from "@/assets/no_img.png";
 import Image from "next/image";
+import Link from "next/link";
 import { BASE_URL } from "@/app/constants/path";
 import { useState } from "react";
 import { useNewMoviesQuery } from "@/app/store/api/features/movieApi";
@@ -60,7 +62,9 @@ const NewReleasesMovies = () => {
             onClick={handlePrev}
             disabled={currentPage === 0}
           >
-            <ArrowLeftIcon className="bg-[#1A1A1A] border-[1px] border-[#1F1F1F] rounded-md" />
+            <div className="bg-[#1A1A1A] border-[1px] border-[#1F1F1F] rounded-md p-2.5">
+              <ArrowLeftIcon />
+            </div>
           </button>
           <div className="w-5 h-1 bg-[#333] rounded-[100px] overflow-hidden">
             <div
@@ -75,7 +79,9 @@ const NewReleasesMovies = () => {
               (currentPage + 1) * itemsPerPage >= newMovies?.results.length
             }
           >
-            <ArrowRightIcon className="bg-[#1A1A1A] border-[1px] border-[#1F1F1F] rounded-md" />
+            <div className="bg-[#1A1A1A] border-[1px] border-[#1F1F1F] rounded-md p-2.5">
+              <ArrowRightIcon />
+            </div>
           </button>
         </div>
       </div>
@@ -86,23 +92,25 @@ const NewReleasesMovies = () => {
               key={id}
               className="cursor-pointer border border-[#262626] bg-[#1A1A1A] rounded-[10px] p-4  "
             >
-              <div className="flex flex-col items-center gap-4">
-                <Image
-                  src={BASE_URL + poster_path}
-                  alt="movie"
-                  width={190}
-                  height={230}
-                  className="rounded-[10px]"
-                />
-                <div className="flex items-center gap-[3px] py-2 px-[14px] bg-[#141414] border-[1px] border-[#262626] rounded-[51px]">
-                  <span className="text-default text-xs font-medium">
-                    Released at
-                  </span>
-                  <span className="text-[#BFBFBF] text-xs font-medium">
-                    {formatDate(release_date)}
-                  </span>
+              <Link href={`/movies/${id}`}>
+                <div className="flex flex-col items-center gap-4">
+                  <Image
+                    src={poster_path !== null ? BASE_URL + poster_path : NoImg}
+                    alt="movie"
+                    width={190}
+                    height={230}
+                    className="rounded-[10px]"
+                  />
+                  <div className="flex items-center gap-[3px] py-2 px-[14px] bg-[#141414] border-[1px] border-[#262626] rounded-[51px]">
+                    <span className="text-default text-xs font-medium">
+                      Released at
+                    </span>
+                    <span className="text-[#BFBFBF] text-xs font-medium">
+                      {formatDate(release_date)}
+                    </span>
+                  </div>
                 </div>
-              </div>
+              </Link>
             </li>
           )
         )}
