@@ -3,7 +3,13 @@
 import FreeTrail from "@/app/components/FreeTrail";
 import ShowsTopGenres from "@/app/components/ShowsTopGenres";
 import { useGetShowsByGenresIdQuery } from "@/app/store/api/features/showApi";
+import { useGenreShowsQuery } from "@/app/store/api/features/showApi";
 import { useParams } from "next/navigation";
+
+interface Genres {
+  name: string;
+  id: number;
+}
 
 const ShowsGenresId = () => {
   const { id: genresId } = useParams();
@@ -12,6 +18,13 @@ const ShowsGenresId = () => {
     genresId,
     page,
   });
+
+  const { data: genreShows } = useGenreShowsQuery(null);
+
+  const genre = genreShows?.genres.find(
+    (genre: Genres) => genre.id === Number(genresId)
+  );
+  const genreName = genre ? genre.name : "Unknown Genre";
 
   const limitedShows = showsByGenres?.results?.slice(0, 10);
 
@@ -33,7 +46,7 @@ const ShowsGenresId = () => {
           <span className="hidden lg:block absolute left-[160px] top-[-22px] text-center bg-[#E50000] rounded-md font-semibold text-white px-5 py-2 ">
             Top 10 In
           </span>
-          <ShowsTopGenres limitedShows={limitedShows} />
+          <ShowsTopGenres limitedShows={limitedShows} genreName={genreName} />
         </div>
         <FreeTrail />
       </div>

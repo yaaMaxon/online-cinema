@@ -12,7 +12,7 @@ const Subscription = () => {
   };
 
   return (
-    <div>
+    <>
       <div className="mb-10 lg:flex lg:gap-20 lg:items-center">
         <div>
           <h2 className="text-white text-2xl font-bold mb-2.5 lg:text-[28px]">
@@ -50,7 +50,7 @@ const Subscription = () => {
           />
         ))}
       </ul>
-    </div>
+    </>
   );
 };
 

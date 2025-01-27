@@ -3,17 +3,21 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "next/navigation";
 import { useGetShowsByGenresIdQuery } from "@/app/store/api/features/showApi";
+import { useGenreShowsQuery } from "@/app/store/api/features/showApi";
 import ShowsByGenres from "@/app/components/ShowsByGenres";
 import FreeTrail from "@/app/components/FreeTrail";
+import { Show } from "@/app/types/show";
+
+interface Genres {
+  name: string;
+  id: number;
+}
 
 const ShowsGenresId = () => {
   const { id: genresId } = useParams();
-  const [page, setPage] = useState(1);
-  const [allShows, setAllShows] = useState([]);
-  const [totalPages, setTotalPages] = useState(1);
-
-  console.log("Genres ID:", genresId);
-  console.log("Page:", page);
+  const [page, setPage] = useState<number>(1);
+  const [allShows, setAllShows] = useState<Show[]>([]);
+  const [totalPages, setTotalPages] = useState<number>(1);
 
   const {
     data: showsByGenres,
@@ -24,15 +28,18 @@ const ShowsGenresId = () => {
     page,
   });
 
-  console.log(showsByGenres);
+  const { data: genreShows } = useGenreShowsQuery(null);
+
+  const genre = genreShows?.genres.find(
+    (genre: Genres) => genre.id === Number(genresId)
+  );
+  const genreName = genre ? genre.name : "Unknown Genre";
 
   useEffect(() => {
     if (showsByGenres?.results) {
-      console.log("Received shows:", showsByGenres.results);
-
       setAllShows((prevShows) => {
         const newShows = showsByGenres.results.filter(
-          (show) => !prevShows.some((prevShow) => prevShow.id === show.id)
+          (show: Show) => !prevShows.some((prevShow) => prevShow.id === show.id)
         );
         return [...prevShows, ...newShows];
       });
@@ -73,6 +80,7 @@ const ShowsGenresId = () => {
               page,
               total_pages: totalPages,
             }}
+            genreName={genreName}
             onLoadMore={handleLoadMore}
           />
         </div>

@@ -1,22 +1,34 @@
 "use client";
 
-import React from "react";
 import ViewsIcon from "@/assets/views.svg";
 import Link from "next/link";
 import Image from "next/image";
 import NoImg from "@/assets/no_img.png";
 import { BASE_URL } from "@/app/constants/path";
+import { Show } from "@/app/types/show";
 
-const ShowsByGenres = ({ showsByGenres, onLoadMore }) => {
+interface ShowPage {
+  page: number;
+  results: Show[];
+  total_pages: number;
+}
+
+type Props = {
+  showsByGenres: ShowPage;
+  genreName: string;
+  onLoadMore: () => void;
+};
+
+const ShowsByGenres = ({ showsByGenres, genreName, onLoadMore }: Props) => {
   const { results: shows, page, total_pages } = showsByGenres;
 
   return (
     <>
       <h2 className="text-white text-center text-2xl font-bold lg:text-3xl mb-5 lg:mb-10">
-        Popular Shows
+        {genreName}
       </h2>
       <ul className="flex justify-center gap-5 lg:justify-between flex-wrap">
-        {shows?.map(({ id, poster_path, popularity, vote_average }) => (
+        {shows?.map(({ id, poster_path, popularity, vote_average }: Show) => (
           <li
             key={id}
             className="cursor-pointer border border-[#262626] bg-[#1A1A1A] rounded-[10px] p-4"

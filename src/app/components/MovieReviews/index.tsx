@@ -82,9 +82,9 @@ const MovieReviews = () => {
           displayedReviews?.map(({ id, content, author_details }: Review) => (
             <li
               key={id}
-              className="bg-[#0F0F0F] border border-[#262626] rounded-xl p-[30px]"
+              className="bg-[#0F0F0F] border border-[#262626] rounded-xl p-6 lg:p-[30px]"
             >
-              <div className="flex items-center justify-between mb-4">
+              <div className="flex gap-2.5 lg:gap-0 flex-col lg:flex-row items-start lg:items-center lg:justify-between mb-4">
                 <span className="text-white lg:text-lg font-medium">
                   {author_details.username}
                 </span>

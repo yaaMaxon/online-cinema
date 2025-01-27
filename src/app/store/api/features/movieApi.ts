@@ -23,14 +23,10 @@ export const movieApi = RTKAPI.injectEndpoints({
     getMovieReviews: builder.query({
       query: (movieId) => `/movie/${movieId}/reviews?language=en-US&page=1`
     }),
-    // getMoviesByGenresId: builder.query({
-    //   query: (genresId) => `/discover/movie?with_genres=${genresId}&page=1&sort_by=popularity.desc`
-    // }),
-getMoviesByGenresId: builder.query({
-  query: ({ genresId, page }) =>
-    `/discover/movie?with_genres=${genresId}&page=${page}&sort_by=popularity.desc`,
-}),
-
+    getMoviesByGenresId: builder.query({
+      query: ({ genresId, page }) =>
+       `/discover/movie?with_genres=${genresId}&page=${page}&sort_by=popularity.desc`,
+    }),
   }),
 })
 

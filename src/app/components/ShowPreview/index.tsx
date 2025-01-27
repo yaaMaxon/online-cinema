@@ -28,7 +28,7 @@ const ShowPreview = ({ backdrop, name, overview }: Props) => {
               "linear-gradient(0deg, #141414 0%, rgba(20, 20, 20, 0.00) 100%)",
           }}
         ></div>
-        <div className="absolute bottom-5 left-[200px] right-[200px] flex items-center flex-col gap-5 lg:gap-[30px]">
+        <div className="absolute bottom-5 lg:px-[100px] flex items-center flex-col gap-5 lg:gap-[30px]">
           <div className="flex flex-col items-center gap-1">
             <h2 className="text-white text-2xl lg:text-[38px] font-bold leading-[57px]">
               {name}
