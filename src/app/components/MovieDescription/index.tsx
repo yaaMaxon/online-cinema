@@ -13,6 +13,7 @@ type Props = {
 const MovieDescription = ({ movieDetails }: Props) => {
   const { release_date, spoken_languages, vote_average, genres, runtime } =
     movieDetails;
+  console.log(movieDetails);
 
   return (
     <div className="flex flex-col gap-5 lg:gap-6 bg-[#1A1A1A] p-6 lg:p-10 rounded-[10px] border border-[#262626] max-h-[600px]">
