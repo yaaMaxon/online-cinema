@@ -97,7 +97,7 @@ const GenreShowsList = () => {
         {displayedGenres?.map(({ name, id }: Genres) => (
           <li
             key={id}
-            className="cursor-pointer border border-[#262626] bg-[#1A1A1A] border-[1px solid #262626] rounded-[10px] p-6"
+            className="cursor-pointer border border-[#262626] bg-[#1A1A1A] border-[1px solid #262626] rounded-[10px] w-[190px] h-[230px] p-6"
           >
             <Link href={`/shows/genres/${id}`}>
               <div className="relative mb-[2px]">
@@ -117,7 +117,9 @@ const GenreShowsList = () => {
                 ></div>
               </div>
               <div className="flex justify-between items-center">
-                <span className="text-white font-semibold">{name}</span>
+                <span className="text-white text-sm lg:text-lg font-semibold">
+                  {name}
+                </span>
                 <ArrowRightIcon />
               </div>
             </Link>

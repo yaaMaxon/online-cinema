@@ -179,7 +179,7 @@ const GenresList = ({ title, label, titleStyles }: Props) => {
                   ></div>
                 </div>
                 <div className="flex justify-between items-center">
-                  <span className="text-white text-sm lg:text-lg font-semibold">
+                  <span className="text-white text-sm font-semibold">
                     {name}
                   </span>
                   <ArrowRightIcon />
