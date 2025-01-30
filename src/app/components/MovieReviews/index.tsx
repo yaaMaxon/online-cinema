@@ -149,7 +149,10 @@ const MovieReviews = () => {
           </button>
         </div>
       )}
-      {isModalOpen && <ModalReviewsForm setModalState={setModalState} />}
+      <ModalReviewsForm
+        isModalOpen={isModalOpen}
+        setModalState={setModalState}
+      />
     </div>
   );
 };

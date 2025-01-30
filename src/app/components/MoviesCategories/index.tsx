@@ -10,19 +10,19 @@ const MoviesCategories = () => {
       <span className="hidden lg:block absolute top-[-22px] bg-[#E50000] rounded-md font-semibold text-white px-5 py-2 w-[95px]">
         Movies
       </span>
-      <div className="mb-[50px]">
+      <div id="genres" className="mb-[50px] scroll-mt-[128px]">
         <GenresList title="Our Genres" titleStyles="text-[30px]" />
       </div>
       <div className="mb-[50px]">
         <PopularGenres />
       </div>
-      <div className="mb-[50px]">
+      <div id="trending" className="mb-[50px] scroll-mt-[128px]">
         <TrendingMovies />
       </div>
-      <div className="mb-[50px]">
+      <div id="new-release" className="mb-[50px] scroll-mt-[128px]">
         <NewReleasesMovies />
       </div>
-      <div>
+      <div id="popular" className="scroll-mt-[128px]">
         <MustWatchesMovies />
       </div>
     </div>

@@ -1,8 +1,16 @@
+"use client";
+
 import Button from "../Button";
 import Image from "next/image";
 import freeTrailBg from "../../../assets/freeTrailBg.webp";
+import { useRouter } from "next/navigation";
 
 const FreeTrail = () => {
+  const router = useRouter();
+  const handleButtonClick = () => {
+    router.push("/subscription");
+  };
+
   return (
     <div className="flex flex-col items-center text-center lg:text-start lg:flex-row lg:justify-between bg-[#0F0F0F] border-[1px] border-[#262626] rounded-xl px-[30px] py-[50px] lg:px-[62px] lg:py-[87px] relative">
       <div className="mb-[50px] lg:mb-0 z-10">
@@ -14,7 +22,9 @@ const FreeTrail = () => {
           sign up for a free trial of StreamVibe.
         </p>
       </div>
-      <Button className="rounded-lg z-10">Start a Free Trial</Button>
+      <Button className="rounded-lg z-10" onClick={handleButtonClick}>
+        Start a Free Trial
+      </Button>
       <div className="absolute top-0 left-0 w-full h-full bg-cover bg-center">
         <Image
           src={freeTrailBg}

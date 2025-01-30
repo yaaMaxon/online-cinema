@@ -27,6 +27,9 @@ export const movieApi = RTKAPI.injectEndpoints({
       query: ({ genresId, page }) =>
        `/discover/movie?with_genres=${genresId}&page=${page}&sort_by=popularity.desc`,
     }),
+    getSearchedMovies: builder.query({
+      query: (query) => `/search/movie?query=${query}&include_adult=false&language=en-US&page=1`
+    }),
   }),
 })
 
@@ -38,4 +41,5 @@ export const {
   useGetMovieDetailsQuery, 
   useGetMovieCastQuery,
   useGetMovieReviewsQuery,
-  useGetMoviesByGenresIdQuery } = movieApi
+  useGetMoviesByGenresIdQuery, 
+  useGetSearchedMoviesQuery } = movieApi

@@ -4,21 +4,21 @@ import PlayIcon from "../../../assets/play.svg";
 import BigLogo from "../../../assets/bigLogo.svg";
 import Button from "../Button";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
-import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 const Main = () => {
   const isMediaLessThan1024 = useMediaQuery(1024);
-
-  useEffect(() => {
-    fetch("/api/email?q=cat", {
-      method: "POST",
-      body: "hello",
-    }).then(console.log);
-  }, []);
+  const router = useRouter();
+  const handleButtonClick = () => {
+    router.push("/movies");
+  };
 
   return (
     <div className="flex flex-col items-center">
-      <BigLogo className="my-[50px] lg:my-[100px]" />
+      <BigLogo
+        className="my-[50px] lg:my-[100px] cursor-pointer"
+        onClick={handleButtonClick}
+      />
       <div className="flex  flex-col items-center text-center">
         <h1 className="text-white text-[28px] font-bold mb-2.5 lg:text-5xl">
           The Best Streaming Experience
@@ -28,7 +28,11 @@ const Main = () => {
             ? "StreamVibe is the best streaming experience for watching your favorite movies and shows on demand, anytime, anywhere."
             : "StreamVibe is the best streaming experience for watching your favorite movies and shows on demand, anytime, anywhere. With StreamVibe, you can enjoy a wide variety of content, including the latest blockbusters, classic movies, popular TV shows, and more. You can also create your own watchlists, so you can easily find the content you want to watch."}
         </p>
-        <Button icon={<PlayIcon />} className="rounded-lg px-6">
+        <Button
+          icon={<PlayIcon />}
+          className="rounded-lg px-6"
+          onClick={handleButtonClick}
+        >
           Start Watching Now
         </Button>
       </div>

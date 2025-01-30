@@ -193,7 +193,7 @@ const SupportMain = () => {
         </div>
 
         <div>
-          <button className="bg-[#E50000] rounded-md text-white font-semibold leading-5 px-5 py-[14px] w-full">
+          <button className="bg-[#E50000] rounded-md text-white font-semibold leading-5 px-5 py-[14px] w-full hover:bg-[#e50000eb]">
             Send
           </button>
         </div>

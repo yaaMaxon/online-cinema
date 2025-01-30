@@ -5,8 +5,14 @@ const Footer = () => {
   return (
     <footer className="bg-[#0F0F0F] px-4 pt-[50px] pb-5 lg:p-20 lg:pb-10">
       <ul className="flex flex-wrap gap-y-[30px] mb-[50px] lg:justify-between">
-        {footerList.map(({ title, pages, icons }, index) => (
-          <FooterItem key={index} title={title} pages={pages} icons={icons} />
+        {footerList.map(({ title, pages, icons, path }, index) => (
+          <FooterItem
+            key={index}
+            title={title}
+            pages={pages}
+            path={path}
+            icons={icons}
+          />
         ))}
       </ul>
       <div className="border-t border-t-[#262626] pt-5 lg:flex lg:justify-between">

@@ -1,15 +1,22 @@
 "use client";
+
 import Button from "../Button";
 import QuestionItem from "../QuestionItem";
 import { frequentlyAskedQuestions } from "./QuestionsBoxSettings";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
+import { useRouter } from "next/navigation";
 
 const QuestionsBox = () => {
+  const router = useRouter();
   const isMediaLessThan1024 = useMediaQuery(1024);
 
   const half = Math.ceil(frequentlyAskedQuestions.length / 2);
   const leftColumn = frequentlyAskedQuestions.slice(0, half);
   const rightColumn = frequentlyAskedQuestions.slice(half);
+
+  const handleButtonClick = () => {
+    router.push("/support");
+  };
 
   return (
     <div>
@@ -23,7 +30,7 @@ const QuestionsBox = () => {
             answers to the most common questions about StreamVibe.
           </p>
         </div>
-        <Button>Ask a Question</Button>
+        <Button onClick={handleButtonClick}>Ask a Question</Button>
       </div>
 
       <div className="lg:flex lg:justify-between">

@@ -16,19 +16,31 @@ const Home = () => {
         </div>
         <Main />
       </div>
-      <div className="mb-[50px] px-4 lg:mb-[120px] lg:px-20">
+      <div
+        id="categories"
+        className="mb-[50px] px-4 lg:mb-[120px] lg:px-20 scroll-mt-[128px]"
+      >
         <GenresList
           title="Explore our wide variety of categories"
           label="Whether you're looking for a comedy to make you laugh, a drama to make you think, or a documentary to learn something new"
         />
       </div>
-      <div className="mb-20 px-4 lg:mb-[120px] lg:px-20">
+      <div
+        id="devices"
+        className="mb-20 px-4 lg:mb-[120px] lg:px-20 scroll-mt-[128px]"
+      >
         <VariousDevice />
       </div>
-      <div className="mb-20 px-4 lg:mb-[120px] lg:px-20">
+      <div
+        id="faq"
+        className="mb-20 px-4 lg:mb-[120px] lg:px-20 scroll-mt-[128px]"
+      >
         <QuestionsBox />
       </div>
-      <div className="mb-20 px-4 lg:mb-[113px] lg:px-20">
+      <div
+        id="pricing"
+        className="mb-20 px-4 lg:mb-[113px] lg:px-20 scroll-mt-[128px]"
+      >
         <Subscription />
       </div>
       <div className="mb-20 px-4 lg:mb-[113px] lg:px-20">

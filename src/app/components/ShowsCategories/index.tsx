@@ -10,19 +10,19 @@ const ShowsCategories = () => {
       <span className="hidden lg:block absolute top-[-22px] bg-[#E50000] rounded-md font-semibold text-white px-5 py-2 w-[95px]">
         Shows
       </span>
-      <div className="mb-[50px]">
+      <div id="genres-show" className="mb-[50px] scroll-mt-[128px]">
         <GenreShowsList />
       </div>
       <div className="mb-[50px]">
         <PopularShowGenres />
       </div>
-      <div className="mb-[50px]">
+      <div id="trending-show" className="mb-[50px] scroll-mt-[128px]">
         <TrendingShows />
       </div>
-      <div className="mb-[50px]">
+      <div id="new-release-show" className="mb-[50px] scroll-mt-[128px]">
         <NewReleasesShows />
       </div>
-      <div>
+      <div id="popular-show" className="scroll-mt-[128px]">
         <MustWatchesShows />
       </div>
     </div>
