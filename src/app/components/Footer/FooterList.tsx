@@ -1,6 +1,3 @@
-import Facebook from "../../../assets/facebook.svg";
-import Twitter from "../../../assets/twiter.svg";
-import LinkedIn from "../../../assets/linkedIn.svg";
 import { FaInstagram } from "react-icons/fa";
 import { FaTelegram } from "react-icons/fa";
 import { IoLogoLinkedin } from "react-icons/io5";

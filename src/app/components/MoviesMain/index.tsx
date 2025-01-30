@@ -29,7 +29,7 @@ const MoviesMain = () => {
         </h1>
         <p className="text-default font-medium hidden lg:flex mb-6">
           With the help of remaining allies, the Avengers must assemble once
-          more in order to undo Thanos's actions and undo the chaos to the
+          more in order to undo Thanos`s actions and undo the chaos to the
           universe, no matter what consequences may be in store, and no matter
           who they face... Avenge the fallen.
         </p>

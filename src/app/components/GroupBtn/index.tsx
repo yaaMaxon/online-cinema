@@ -14,9 +14,13 @@ const GroupBtn = () => {
         Play Now
       </Button>
       <ul className="flex gap-2">
-        {[<PlusIcon />, <LikeIcon />, <VolumeIcon />].map((icon, index) => (
+        {[
+          <PlusIcon key="plus" />,
+          <LikeIcon key="like" />,
+          <VolumeIcon key="volume" />,
+        ].map((icon) => (
           <li
-            key={index}
+            key={icon.key}
             className="p-3 bg-[#0F0F0F] rounded-lg border-[#262626] border-[1px] cursor-pointer"
           >
             {icon}
