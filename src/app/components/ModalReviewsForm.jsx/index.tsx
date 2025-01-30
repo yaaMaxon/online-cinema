@@ -45,7 +45,7 @@ const ModalReviewsForm = ({ setModalState, isModalOpen }: Props) => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className="fixed left-0 top-0 w-full h-full bg-black/30 backdrop-blur-sm z-[100] flex items-center justify-center"
+          className="fixed left-0 top-0 w-full h-full bg-black/30 backdrop-blur-sm z-[300] flex items-center justify-center"
         >
           <motion.div
             initial={{ opacity: 0, y: 50, scale: 0.9 }}
