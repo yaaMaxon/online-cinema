@@ -90,7 +90,7 @@ const ShowCast = () => {
               alt="movie"
               width={87}
               height={89}
-              className="rounded-[10px]"
+              className="rounded-[10px] w-[70px] h-[75px] lg:w-[95px] lg:h-[100px]"
             />
           </li>
         ))}
